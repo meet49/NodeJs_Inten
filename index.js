@@ -6,7 +6,9 @@
 //   res.end()
 // }).listen(4500)
 
-const { required } = require("nodemon/lib/config");
+const { required } = require("nodemon/lib/config")
+
+
 
 
 
@@ -42,48 +44,110 @@ const { required } = require("nodemon/lib/config");
 
 
 
-const express = require('express')
-const path = require('path')
-const app = express()
 
-// how to get the code
 
-// app.get('',(req,res)=>{
-//   res.send('welcome this is home page')
-// })
+// const express = require('express')
+// const path = require('path')
+// const app = express()
+
+// // how to get the code
+
+// // app.get('',(req,res)=>{
+// //   res.send('welcome this is home page')
+// // })
+
+// // app.get('/about',(req,res)=>{
+// //   res.send("this this about page")
+// // })
+// // app.get('/help',(req,res)=>{
+// //   res.send("this is help page")
+// // })
+
+// // how to show the componet or file in the website
+
+// const publicPath = path.join(__dirname,'public')
+
+// // app.use(express.static(publicPath)) // using this url in file name  is show with extenstion
+// app.set("view engine",'ejs')
+
 
 // app.get('/about',(req,res)=>{
-//   res.send("this this about page")
+//   res.sendFile(`${publicPath}/about.html`)
 // })
-// app.get('/help',(req,res)=>{
-//   res.send("this is help page")
+// app.get('',(req,res)=>{
+//   res.sendFile(`${publicPath}/index.html`)
+// })
+// app.get('/profile',(req,res)=>{
+
+//   const user={
+//     name:'Meet Sojitra',
+//     email:'meetsojitra49@gmail.com',
+//     mobile:'9726771777',
+//     city:'surat'
+//   }
+
+//   res.render('profile',{user})
+// })
+// app.listen(5000)
+
+
+
+
+
+
+
+
+
+
+// const express = require('express')
+// const reqFilter = require('./middleware')
+// const app = express()
+// const route = express.Router()
+
+
+// route.use(reqFilter)
+// // const reqFilter=(req,res,next)=>{
+// //   if(!req.query.age){
+// //     res.send("Please Provide Age...")
+// //   }
+// //   else if(req.query.age<18){
+// //     res.send("You are not acess this page...")
+// //   }
+// //   else{
+// //     next()
+// //   }
+// // }
+
+// // app.use(reqFilter)
+
+
+// app.get('/',(req,res)=>{
+//   res.send('Home Page')
 // })
 
+// route.get('/users',(req,res)=>{
+//   res.send('User Page')
+// })
 
-// how to show the componet or file in the website
+// app.use('/',route)
 
-const publicPath = path.join(__dirname,'public')
-
-// app.use(express.static(publicPath)) // using this url in file name  is show with extenstion
-app.set("view engine",'ejs')
+// app.listen(5000)
 
 
-app.get('/about',(req,res)=>{
-  res.sendFile(`${publicPath}/about.html`)
-})
-app.get('',(req,res)=>{
-  res.sendFile(`${publicPath}/index.html`)
-})
-app.get('/profile',(req,res)=>{
 
-  const user={
-    name:'Meet Sojitra',
-    email:'meetsojitra49@gmail.com',
-    mobile:'9726771777',
-    city:'surat'
-  }
 
-  res.render('profile',{user})
-})
-app.listen(5000)
 
+
+
+
+// mongo db database conection
+
+const dbConnect = require('./mongodb')
+
+const main = async ()=>{
+    let data = await dbConnect()
+    data = await data.find().toArray()
+    console.log(data)
+}
+
+main()
