@@ -6,7 +6,9 @@
 //   res.end()
 // }).listen(4500)
 
-const { required } = require("nodemon/lib/config")
+const { required } = require("nodemon/lib/config");
+
+
 
 
 
@@ -140,14 +142,154 @@ const { required } = require("nodemon/lib/config")
 
 
 
-// mongo db database conection
+// // mongo db database conection
 
-const dbConnect = require('./mongodb')
+// const dbConnect = require('./mongodb')
 
-const main = async ()=>{
-    let data = await dbConnect()
-    data = await data.find().toArray()
-    console.log(data)
-}
+// const main = async ()=>{
+//     let data = await dbConnect()
+//     data = await data.find().toArray()
+//     console.log(data)
+// }
 
-main()
+// main()
+
+
+
+
+//mongoose database
+
+
+// const express = require("express")
+// require('./config')
+// const Product = require('./model/product')
+// const app = express()
+
+// app.use(express.json())
+
+// app.post('/create', async (req, res) => {
+//     const data = new Product(req.body)
+//     const result = await data.save()
+//     console.log(req.body)
+//     res.send(result)
+// })
+
+// app.get('/list', async (req, res) => {
+//     const data = await Product.find()
+//     console.log(data)
+//     res.send(data)
+// })
+
+// app.delete('/delete/:_id', async (req, res) => {
+//     const data = await Product.deleteOne(req.params)
+//     console.log(data)
+//     res.send(data)
+// })
+
+
+// app.put('/update/:_id', async (req, res) => {
+//     const data = await Product.updateOne(
+//         req.params,
+//         {
+//             $set: req.body
+//         }
+//     )
+//     console.log(data)
+//     res.send(data)
+// })
+
+
+
+// app.get('/search/:key', async (req, res) => {
+//     console.log(req.params.key)
+//     const data = await Product.find({
+//         "$or":[
+//             {"name":{$regex:req.params.key}}
+//         ]
+//     })
+//     console.log(data)
+//     res.send(data)
+// })
+
+// app.listen(5000)
+
+
+
+
+
+
+
+
+// // file upload using multter pakage
+// const express = require("express");
+// const multer = require("multer");
+// const app = express()
+
+// // app.use(express.json())  
+
+// const upload = multer({
+//     storage: multer.diskStorage({
+//         destination: function (req, file, cb) {
+//             cb(null, 'uploads')
+//         },
+//         filename: function (req, file, cb) {
+//             cb(null, file.fieldname + "-" + Date.now() + ".jpg")
+//         }
+//     })
+// }).single("file_name")
+
+// app.post('/upload', upload, (req, res) => {
+//     res.send("upload")
+// })
+
+// app.listen(5000)
+
+
+
+
+
+
+
+// //os module
+
+// const os = require('os')
+// console.log(os.arch())
+// console.log(os.freemem()/(1024*1024*1024))
+// console.log(os.totalmem()/(1024*1024*1024))
+// console.log(os.hostname())
+// console.log(os.platform())
+// console.log(os.userInfo())
+
+
+
+
+//events
+
+const express = require("express");
+const EventEmitter = require("events")
+const app =express()
+const event = new EventEmitter()
+
+let count = 0
+
+event.on("countAPI",()=>{
+    count++
+    console.log("object",count)
+})
+
+app.get('/',(req,res)=>{
+    res.send("api call")
+    event.emit("countAPI")
+})
+app.get('/serch',(req,res)=>{
+    res.send("api call")
+    event.emit("countAPI")
+
+})
+app.get('/upload',(req,res)=>{
+    res.send("api call")
+    event.emit("countAPI")
+
+})
+
+app.listen(5000)
