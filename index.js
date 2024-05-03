@@ -6,16 +6,6 @@
 //   res.end()
 // }).listen(4500)
 
-const { required } = require("nodemon/lib/config");
-
-
-
-
-
-
-
-
-
 
 // // CRUD Operation Without using database
 
@@ -265,31 +255,31 @@ const { required } = require("nodemon/lib/config");
 
 //events
 
-const express = require("express");
-const EventEmitter = require("events")
-const app =express()
-const event = new EventEmitter()
+// const express = require("express");
+// const EventEmitter = require("events")
+// const app =express()
+// const event = new EventEmitter()
 
-let count = 0
+// let count = 0
 
-event.on("countAPI",()=>{
-    count++
-    console.log("object",count)
-})
+// event.on("countAPI",()=>{
+//     count++
+//     console.log("object",count)
+// })
 
-app.get('/',(req,res)=>{
-    res.send("api call")
-    event.emit("countAPI")
-})
-app.get('/serch',(req,res)=>{
-    res.send("api call")
-    event.emit("countAPI")
+// app.get('/',(req,res)=>{
+//     res.send("api call")
+//     event.emit("countAPI")
+// })
+// app.get('/serch',(req,res)=>{
+//     res.send("api call")
+//     event.emit("countAPI")
 
-})
-app.get('/upload',(req,res)=>{
-    res.send("api call")
-    event.emit("countAPI")
+// })
+// app.get('/upload',(req,res)=>{
+//     res.send("api call")
+//     event.emit("countAPI")
 
-})
+// })
 
-app.listen(5000)
+// app.listen(5000)
